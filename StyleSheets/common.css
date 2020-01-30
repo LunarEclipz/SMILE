@@ -1,0 +1,28 @@
+﻿.shop-navbar {
+    padding: 26px 0;
+    background-color: blanchedalmond;
+}
+
+.carousel-inner, .banner, .banner-inner {
+    background-color: blanchedalmond;
+    height: 250px;
+}
+
+.popular-buys {
+    padding: 20px;
+}
+
+.single-post {
+    background-color: burlywood;
+    margin: 5px;
+    padding: 5px;
+}
+
+.footer {
+    padding-top: 50px;
+    background-color: lightgray;
+}
+
+.list {
+    list-style: none;
+}

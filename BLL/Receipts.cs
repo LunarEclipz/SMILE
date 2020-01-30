@@ -31,6 +31,17 @@ namespace EADPProject.BLL
 
         }
 
+        public Receipts(int Id)
+        {
+            this.Id = Id;
+        }
+
+        public Receipts(int Id, string Hiree)
+        {
+            this.Id = Id;
+            this.Hiree = Hiree;
+        }
+
         public Receipts(string Name, string Hiree, string Location1, string Location2, string Location3, string Location4,
             string Location5, string Location6, string Location7, DateTime DateofHire, string PreferredPhotographer,
             string Remarks, string HCType, double Quantity, string SC, string Price)
@@ -95,6 +106,20 @@ namespace EADPProject.BLL
         {
             ReceiptsDAO dao = new ReceiptsDAO();
             int result = dao.Update(this);
+            return result;
+        }
+
+        public int deleteReceipts()
+        {
+            ReceiptsDAO dao = new ReceiptsDAO();
+            int result = dao.Delete(this);
+            return result;
+        }
+
+        public int AcceptReceipts()
+        {
+            ReceiptsDAO dao = new ReceiptsDAO();
+            int result = dao.Accept(this);
             return result;
         }
 

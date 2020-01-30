@@ -49,7 +49,7 @@ namespace EADPProject.DAL
 
 
                 Receipts obj = new Receipts(Id, Name, Hiree, Location1, Location2, Location3, Location4, Location5, Location6, Location7,
-                    DateofHire, PreferredPhotographer, Remarks, HCType, Quantity, SC, Price);
+                    DateofHire.Date, PreferredPhotographer, Remarks, HCType, Quantity, SC, Price);
                 rcpList.Add(obj);
             }
 
@@ -101,7 +101,7 @@ namespace EADPProject.DAL
                 string SC = row["SC"].ToString();
                 string Price = row["Price"].ToString();
                 rcp = new Receipts(Id, Name, Hiree, Location1, Location2, Location3, Location4, Location5, Location6, Location7,
-                    DateofHire, PreferredPhotographer, Remarks, HCType, Quantity, SC, Price);
+                    DateofHire.Date, PreferredPhotographer, Remarks, HCType, Quantity, SC, Price);
             }
             else
             {
@@ -146,6 +146,64 @@ namespace EADPProject.DAL
             sqlCmd.Parameters.AddWithValue("@paraQuantity", rcp.Quantity);
             sqlCmd.Parameters.AddWithValue("@paraSC", rcp.SC);
             sqlCmd.Parameters.AddWithValue("@paraPrice", rcp.Price);
+
+            // Step 4 Open connection the execute NonQuery of sql command   
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            // Step 5 :Close connection
+            myConn.Close();
+
+            return result;
+        }
+
+        public int Delete(Receipts rcp)
+        {
+            int result = 0;
+            SqlCommand sqlCmd = new SqlCommand();
+
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            // Step 2 - Instantiate SqlCommand instance to add record 
+            //          with INSERT statement
+            string sqlStmt = "UPDATE Receipts SET Hiree = @paraHiree " +
+                "where Id = @paraNric ";
+
+            sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            // Step 3 : Add each parameterised variable with value
+            sqlCmd.Parameters.AddWithValue("@paraNric", rcp.Id);
+            sqlCmd.Parameters.AddWithValue("@paraHiree", "Deleted");
+
+            // Step 4 Open connection the execute NonQuery of sql command   
+            myConn.Open();
+            result = sqlCmd.ExecuteNonQuery();
+
+            // Step 5 :Close connection
+            myConn.Close();
+
+            return result;
+        }
+
+        public int Accept(Receipts rcp)
+        {
+            int result = 0;
+            SqlCommand sqlCmd = new SqlCommand();
+
+            string DBConnect = ConfigurationManager.ConnectionStrings["ConnStr"].ConnectionString;
+            SqlConnection myConn = new SqlConnection(DBConnect);
+
+            // Step 2 - Instantiate SqlCommand instance to add record 
+            //          with INSERT statement
+            string sqlStmt = "UPDATE Receipts SET Hiree = @paraHiree " +
+                "where Id = @paraNric ";
+
+            sqlCmd = new SqlCommand(sqlStmt, myConn);
+
+            // Step 3 : Add each parameterised variable with value
+            sqlCmd.Parameters.AddWithValue("@paraNric", rcp.Id);
+            sqlCmd.Parameters.AddWithValue("@paraHiree", rcp.Hiree);
 
             // Step 4 Open connection the execute NonQuery of sql command   
             myConn.Open();
