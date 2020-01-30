@@ -19,7 +19,17 @@ namespace EADPProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["StudNo"] != null)
+            {
+                //if (Session["EventLocation"] != null)
+                //{
+                //    TextBoxLocation1.Text = Session["eventLocation"].ToString();
+                //}
+            }
+            else
+            {
+                Response.Redirect("Login.aspx", false);
+            }
         }
 
         private bool ValidateInput()
@@ -50,7 +60,7 @@ namespace EADPProject
 
             if (CheckBoxSoftCopy.Checked == true)
             {
-                softcopy = "Yes Softcopy";
+                softcopy = "∞";
             }
 
 
@@ -88,8 +98,8 @@ namespace EADPProject
 
             if (ValidateInput())
             {
-
-                rcp = new Receipts("Username", "Not Accepted", TextBoxLocation1.Text, TextBoxLocation2.Text, TextBoxLocation3.Text,
+                string username = Session["StudNo"].ToString();
+                rcp = new Receipts(username, "Not Accepted", TextBoxLocation1.Text, TextBoxLocation2.Text, TextBoxLocation3.Text,
                     TextBoxLocation4.Text, TextBoxLocation5.Text, TextBoxLocation6.Text, TextBoxLocation7.Text,
                     DateofHire, TextBoxPreferred.Text, TextBoxRemarks.Text, hardcopy, quantity , softcopy, price);
                 //rcp = new Receipts("Username", "q", "q", "q", "q", "q", "q", "q", "q",
@@ -100,7 +110,7 @@ namespace EADPProject
                 {
                     LblMsg.Text = "Record added successfully!";
                     LblMsg.ForeColor = Color.Green;
-                    Response.Redirect("viewRequestHistory.aspx");
+                    Response.Redirect("viewRequestHistory.aspx?createsuccess=true");
 
                 }
                 else

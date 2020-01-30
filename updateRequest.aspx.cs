@@ -23,34 +23,42 @@ namespace EADPProject
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (Session["StudNo"] != null)
             {
-                Receipts rcp = new Receipts();
 
-                int id = Convert.ToInt32(Request.QueryString["id"]);
-                Receipts currentrcp = rcp.GetReceiptsById(id);
-                TextBoxLocation1.Text = currentrcp.Location1.Trim();
-                TextBoxLocation2.Text = currentrcp.Location2.Trim();
-                TextBoxLocation3.Text = currentrcp.Location3.Trim();
-                TextBoxLocation4.Text = currentrcp.Location4.Trim();
-                TextBoxLocation5.Text = currentrcp.Location5.Trim();
-                TextBoxLocation6.Text = currentrcp.Location6.Trim();
-                TextBoxLocation7.Text = currentrcp.Location7.Trim();
-                if (currentrcp.HCType != "No Hardcopy                                       ")
+                if (!IsPostBack)
                 {
-                    CheckBoxHardCopy.Checked = true;
-                    TextBoxQuantity.Text = currentrcp.Quantity.ToString();
-                    DropDownListHC.Text = currentrcp.HCType;
-                    TextBoxQuantity.Enabled = true;
-                }
-                if (currentrcp.SC != "No Softcopy                                       ")
-                {
-                    CheckBoxSoftCopy.Checked = true;
+                    Receipts rcp = new Receipts();
 
+                    int id = Convert.ToInt32(Request.QueryString["id"]);
+                    Receipts currentrcp = rcp.GetReceiptsById(id);
+                    TextBoxLocation1.Text = currentrcp.Location1.Trim();
+                    TextBoxLocation2.Text = currentrcp.Location2.Trim();
+                    TextBoxLocation3.Text = currentrcp.Location3.Trim();
+                    TextBoxLocation4.Text = currentrcp.Location4.Trim();
+                    TextBoxLocation5.Text = currentrcp.Location5.Trim();
+                    TextBoxLocation6.Text = currentrcp.Location6.Trim();
+                    TextBoxLocation7.Text = currentrcp.Location7.Trim();
+                    if (currentrcp.HCType != "No Hardcopy                                       ")
+                    {
+                        CheckBoxHardCopy.Checked = true;
+                        TextBoxQuantity.Text = currentrcp.Quantity.ToString();
+                        DropDownListHC.Text = currentrcp.HCType;
+                        TextBoxQuantity.Enabled = true;
+                    }
+                    if (currentrcp.SC != "No Softcopy                                       ")
+                    {
+                        CheckBoxSoftCopy.Checked = true;
+
+                    }
+                    TextBoxRemarks.Text = currentrcp.Remarks.Trim();
+                    TextBoxDate.Text = currentrcp.DateofHire.ToShortDateString();
+                    idnow = rcp.Id;
                 }
-                TextBoxRemarks.Text = currentrcp.Remarks.Trim();
-                TextBoxDate.Text = currentrcp.DateofHire.ToShortDateString();
-                idnow = rcp.Id;
+            }
+            else
+            {
+                Response.Redirect("Login.aspx", false);
             }
         }
         
@@ -84,7 +92,7 @@ namespace EADPProject
 
             if (CheckBoxSoftCopy.Checked == true)
             {
-                softcopy = "Yes Softcopy";
+                softcopy = "∞";
             }
 
 
@@ -121,7 +129,9 @@ namespace EADPProject
             int id = Convert.ToInt32(Request.QueryString["id"]);
             if (ValidateInput())
             {
-                Receipts rcp = new Receipts(id, "Username", "Not Accepted",  TextBoxLocation1.Text , TextBoxLocation2.Text, TextBoxLocation3.Text,
+                string username = Session["StudNo"].ToString();
+
+                Receipts rcp = new Receipts(id, username, "Not Accepted",  TextBoxLocation1.Text , TextBoxLocation2.Text, TextBoxLocation3.Text,
                     TextBoxLocation4.Text, TextBoxLocation5.Text, TextBoxLocation6.Text, TextBoxLocation7.Text,
                     DateofHire, TextBoxPreferred.Text, TextBoxRemarks.Text, hardcopy, quantity, softcopy, price);
                 //Console.WriteLine(rcp.Location1 + "!!!" + rcp.Id);
@@ -133,7 +143,7 @@ namespace EADPProject
                 {
                     LblMsg.Text = "Record Updated successfully!";
                     LblMsg.ForeColor = Color.Green;
-                    Response.Redirect("viewRequestHistory.aspx");
+                    Response.Redirect("viewRequestHistory.aspx?updatesuccess=true");
 
                 }
                 else

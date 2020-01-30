@@ -4,19 +4,23 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using EADPProject.BLL;
 
 namespace EADPProject
 {
-    public partial class SmileMaster : System.Web.UI.MasterPage
+    public partial class Smile_Shop1 : System.Web.UI.Page
     {
-        public string type;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["StudNo"] != null)
-            {
-                type = Session["type"].ToString();
-            }
+
+        }
+        protected void BtnAddCart_Click(object sender, EventArgs e)
+        {
+            Cart cart = new Cart();
+
+
+
+
         }
     }
 }

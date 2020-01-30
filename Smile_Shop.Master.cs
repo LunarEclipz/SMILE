@@ -7,16 +7,11 @@ using System.Web.UI.WebControls;
 
 namespace EADPProject
 {
-    public partial class SmileMaster : System.Web.UI.MasterPage
+    public partial class Smile_Shop : System.Web.UI.MasterPage
     {
-        public string type;
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["StudNo"] != null)
-            {
-                type = Session["type"].ToString();
-            }
+
         }
     }
 }

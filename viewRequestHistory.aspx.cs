@@ -11,16 +11,47 @@ namespace EADPProject
 {
     public partial class viewRequestHistory : System.Web.UI.Page
     {
-        public string Id = "0";
-        public string Photographer = "a";
-        public string Location1 = "b";
-        public string Date = "c";
+        public string name;
         public List<Receipts> rcpList;
+      
 
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            
+            string id = Request.QueryString["id"];
             Receipts rcp = new Receipts();
+            if (id != "")
+            {
+                int Id = Convert.ToInt32(id);
+                rcp = new Receipts(Id);
+                //rcp = new Receipts("Username", "q", "q", "q", "q", "q", "q", "q", "q",
+                //    DateofHire, "None", "q", "q", 4, "q", "Free");
+
+                int result = rcp.deleteReceipts();
+            }
+            
             rcpList = rcp.GetAllReceipts();
+
+            if (Session["StudNo"] != null)
+            {
+                name = Session["StudNo"].ToString();
+                if (Request.QueryString["createsuccess"] == "true")
+                {
+                    PanelSuccessResult.Visible = true;
+                    Lbl_msg.Text = "Create Request Successful";
+                }
+
+                if (Request.QueryString["updatesuccess"] == "true")
+                {
+                    PanelSuccessResult.Visible = true;
+                    Lbl_msg.Text = "Update Request Successful";
+                }
+            }
+            else
+            {
+                Response.Redirect("Login.aspx", false);
+            }
         }
 
        

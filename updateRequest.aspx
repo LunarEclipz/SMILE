@@ -22,7 +22,7 @@
                         <td>Locations</td>
                     </tr>
                     <tr>
-                        <td class="auto-style2" rowspan="13">&nbsp;</td>
+                        <td class="auto-style2" rowspan="13"><div style="width: 100%"><iframe width="100%" height="600" src="https://maps.google.com/maps?width=100%&height=600&hl=en&q=singapore+(Your%20Business%20Name)&ie=UTF8&t=&z=11&iwloc=B&output=embed" frameborder="1" scrolling="no" marginheight="0" marginwidth="0"><a href="https://www.mapsdirections.info/en/journey-planner.htm">Route Finder</a></iframe></div><br /></td>
                         <td>1.
                             <asp:TextBox ID="TextBoxLocation1" runat="server" Width="70%"></asp:TextBox>
                         </td>
