@@ -19,14 +19,6 @@ namespace EADPProject
             prodlist = prod.GetAllProduct();
         }
 
-        //public List<Product> Displayproduct()
-        //{
-
-        //    Product prod = new Product();
-        //    prodlist = prod.GetAllProduct();
-        //    return prodlist;
-        //}
-
 
         protected void BtnAddCart_Click(object sender, EventArgs e)
         {
@@ -42,6 +34,11 @@ namespace EADPProject
             //{
             //    Response.Redirect("Smile_Shop_Catalog.aspx");
             //}
+        }
+
+        protected void cartAdd_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

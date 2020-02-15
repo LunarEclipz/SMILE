@@ -76,6 +76,24 @@ namespace EADPProject {
         protected global::System.Web.UI.WebControls.TextBox tbEventLocation;
         
         /// <summary>
+        /// tbEventCapacity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbEventCapacity;
+        
+        /// <summary>
+        /// ddlCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategory;
+        
+        /// <summary>
         /// SaveImage control.
         /// </summary>
         /// <remarks>
@@ -103,6 +121,15 @@ namespace EADPProject {
         protected global::System.Web.UI.WebControls.Label lblposter;
         
         /// <summary>
+        /// tbEventDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox tbEventDate;
+        
+        /// <summary>
         /// tbStartTime control.
         /// </summary>
         /// <remarks>
@@ -119,15 +146,6 @@ namespace EADPProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox tbEndTime;
-        
-        /// <summary>
-        /// tbEventDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbEventDate;
         
         /// <summary>
         /// ButtonCancelAdd control.

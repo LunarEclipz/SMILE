@@ -67,24 +67,6 @@ namespace EADPProject {
         protected global::System.Web.UI.WebControls.Button backEvent;
         
         /// <summary>
-        /// btnJoinEvent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnJoinEvent;
-        
-        /// <summary>
-        /// ButtonUnregister control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ButtonUnregister;
-        
-        /// <summary>
         /// ButtonHirePhoto control.
         /// </summary>
         /// <remarks>
@@ -92,5 +74,23 @@ namespace EADPProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button ButtonHirePhoto;
+        
+        /// <summary>
+        /// registerButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button registerButton;
+        
+        /// <summary>
+        /// unregisterButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button unregisterButton;
     }
 }

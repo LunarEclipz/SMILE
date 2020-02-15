@@ -67,6 +67,15 @@ namespace EADPProject {
         protected global::System.Web.UI.WebControls.Button ButtonAddNewEvent;
         
         /// <summary>
+        /// idLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label idLabel;
+        
+        /// <summary>
         /// deleteModalButton control.
         /// </summary>
         /// <remarks>

@@ -22,6 +22,24 @@ namespace EADPProject {
         protected global::System.Web.UI.HtmlControls.HtmlForm form3;
         
         /// <summary>
+        /// PanelErrorResult control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel PanelErrorResult;
+        
+        /// <summary>
+        /// Lbl_err control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Lbl_err;
+        
+        /// <summary>
         /// PanelSuccessResult control.
         /// </summary>
         /// <remarks>
@@ -31,12 +49,12 @@ namespace EADPProject {
         protected global::System.Web.UI.WebControls.Panel PanelSuccessResult;
         
         /// <summary>
-        /// Lbl_msg control.
+        /// Lbl_Msg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Lbl_msg;
+        protected global::System.Web.UI.WebControls.Label Lbl_Msg;
     }
 }

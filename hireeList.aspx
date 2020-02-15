@@ -20,8 +20,11 @@
                 var string;
                     function updateTransfer(elmnt) {
                         //window.location.href("updateRequest.aspx?id=" + elmnt.id);
-
-                  
+                        //window.open(string, "_self");
+                        //if (elmnt) {
+                        //    window.location = ("hireeList.aspx?status=a&id=" + elmnt.name);
+                        //    console.log(string)
+                        //}
                     
                     string = "window.open(\"hireeList.aspx?status=a&id= " + elmnt.name + "\")" ;
 
@@ -48,13 +51,18 @@
 
     <div class="card card-body" style="color:#df744a">
         
-        <h1>Hire History</h1>
-
+       <h1>Hire History</h1>
+<%--       <div class="input-group">
+                <input type="text" id="HireeSearch" class="form-control" placeholder="Search...">
+                <div class="input-group-append">
+                    <button type="button" class="btn" style="background-color: #df744a; color: white;" id="HireeSearchButton"><i class="fas fa-search mr-1"></i>Search</button>
+                </div>
+            </div>--%>
 
 
 
         <h2>Accepted </h2>
-        <div class="container card text-center shadow-lg bg-white">
+        <div class="card-body card text-center shadow-lg bg-white">
                 <br>
 
 
@@ -90,7 +98,7 @@
                                             
                                                 
                                             
-                 <button type="button" id="button<%= i.Id %>" class="btn btn-lg btn-block" data-toggle="modal" data-target="#myModal<%= i.Id %>">
+                 <button type="button" id="button<%= i.Id %>" class="HireeMainDiv btn btn-lg btn-block" data-toggle="modal" data-target="#myModal<%= i.Id %>">
                      <div class="row">
 
                          <div class=" col-sm-3">
@@ -100,7 +108,7 @@
                             <h4><%= i.Name %></h4>
                          </div>
                          <div class=" col-sm-3">
-                            <h4><%= i.Location1 %></h4>
+                            <h4 class="HireeLocation" data-HireeNames="<%= i.Location1 %>"><%= i.Location1 %></h4>
                          </div>
                          <div class=" col-sm-3">
                             <h4><%= i.DateofHire.ToString("dd/MM/yyyy") %></h4>
@@ -146,37 +154,53 @@
                                 </tr>
 
 
-                                <tr>
-                                <td class="center">2</td>
-                                <td class="left"><%= i.Location2 %></td>
-                                </tr>
+                                <% if (i.Location2 != "                                                  ")
+                                                     { %>
 
+                                            <tr>
+                                                <td class="center">2</td>
+                                                <td class="left"><%= i.Location2 %></td>
+                                            </tr>
+                                            <% if (i.Location3 != "                                                  ")
+                                                     { %>
 
-                                <tr>
-                                <td class="center">3</td>
-                                <td class="left"><%= i.Location3 %></td>
-                                </tr>
+                                            <tr>
+                                                <td class="center">3</td>
+                                                <td class="left"><%= i.Location3 %></td>
+                                            </tr>
+                                            <% if (i.Location4 != "                                                  ")
+                                                     { %>
 
+                                            <tr>
+                                                <td class="center">4</td>
+                                                <td class="left"><%= i.Location4 %></td>
+                                            </tr>
+                                            <% if (i.Location5 != "                                                  ")
+                                                     { %>
+                                            <tr>
+                                                <td class="center">5</td>
+                                                <td class="left"><%= i.Location5 %></td>
+                                            </tr>
+                                            <% if (i.Location6 != "                                                  ")
+                                                     { %>
 
-                                <tr>
-                                <td class="center">4</td>
-                                <td class="left"><%= i.Location4 %></td>
-                                </tr>
+                                            <tr>
+                                                <td class="center">6</td>
+                                                <td class="left"><%= i.Location6 %></td>
+                                            </tr>
+                                            <% if (i.Location7 != "                                                  ")
+                                                     { %>
 
-                                <tr>
-                                <td class="center">5</td>
-                                <td class="left"><%= i.Location5 %></td>
-                                </tr>
-
-                                <tr>
-                                <td class="center">6</td>
-                                <td class="left"><%= i.Location6 %></td>
-                                </tr>
-
-                                <tr>
-                                <td class="center">7</td>
-                                <td class="left"><%= i.Location7 %></td>
-                                </tr>
+                                            <tr>
+                                                <td class="center">7</td>
+                                                <td class="left"><%= i.Location7 %></td>
+                                            </tr>
+                                            <% }
+                                                                     }
+                                                                 }
+                                                             }
+                                                         }
+                                                     } %>
                                     </table>
                                                                         <h6><%= i.Remarks %> **</h6>
 
@@ -199,10 +223,11 @@
 
                                <h4>Price : <%= i.Price %></h4>--%>
 
-                            <form enctype="multipart/form-data" action="/Images" method="post">
-                                <input class="text-center" id="image-file" type="file" />
-                                </form>
+                                <asp:FileUpload ID="SaveImage" runat="server"  AllowMultiple="true" />
+                                
+                                <asp:Label runat="server" ID="lblposter" />
                             <div class="modal-footer">
+
                                 
                                 
 
@@ -226,7 +251,7 @@
 
         <br>
                 <h2>Preffered </h2>
-        <div class="container card text-center shadow-lg bg-white">
+        <div class="card-body card text-center shadow-lg bg-white">
                 <br>
 
 
@@ -318,37 +343,53 @@
                                 </tr>
 
 
-                                <tr>
-                                <td class="center">2</td>
-                                <td class="left"><%= i.Location2 %></td>
-                                </tr>
+                                <% if (i.Location2 != "                                                  ")
+                                                     { %>
 
+                                            <tr>
+                                                <td class="center">2</td>
+                                                <td class="left"><%= i.Location2 %></td>
+                                            </tr>
+                                            <% if (i.Location3 != "                                                  ")
+                                                     { %>
 
-                                <tr>
-                                <td class="center">3</td>
-                                <td class="left"><%= i.Location3 %></td>
-                                </tr>
+                                            <tr>
+                                                <td class="center">3</td>
+                                                <td class="left"><%= i.Location3 %></td>
+                                            </tr>
+                                            <% if (i.Location4 != "                                                  ")
+                                                     { %>
 
+                                            <tr>
+                                                <td class="center">4</td>
+                                                <td class="left"><%= i.Location4 %></td>
+                                            </tr>
+                                            <% if (i.Location5 != "                                                  ")
+                                                     { %>
+                                            <tr>
+                                                <td class="center">5</td>
+                                                <td class="left"><%= i.Location5 %></td>
+                                            </tr>
+                                            <% if (i.Location6 != "                                                  ")
+                                                     { %>
 
-                                <tr>
-                                <td class="center">4</td>
-                                <td class="left"><%= i.Location4 %></td>
-                                </tr>
+                                            <tr>
+                                                <td class="center">6</td>
+                                                <td class="left"><%= i.Location6 %></td>
+                                            </tr>
+                                            <% if (i.Location7 != "                                                  ")
+                                                     { %>
 
-                                <tr>
-                                <td class="center">5</td>
-                                <td class="left"><%= i.Location5 %></td>
-                                </tr>
-
-                                <tr>
-                                <td class="center">6</td>
-                                <td class="left"><%= i.Location6 %></td>
-                                </tr>
-
-                                <tr>
-                                <td class="center">7</td>
-                                <td class="left"><%= i.Location7 %></td>
-                                </tr>
+                                            <tr>
+                                                <td class="center">7</td>
+                                                <td class="left"><%= i.Location7 %></td>
+                                            </tr>
+                                            <% }
+                                                                     }
+                                                                 }
+                                                             }
+                                                         }
+                                                     } %>
                                     </table>
 
                                     <h6><%= i.Remarks %> **</h6>
@@ -405,7 +446,7 @@
             <br>
         
         <h2>Requests </h2>
-        <div class="container card text-center shadow-lg bg-white">
+        <div class="card-body card text-center shadow-lg bg-white">
                 <br>
 
 
@@ -498,37 +539,53 @@
                                 </tr>
 
 
-                                <tr>
-                                <td class="center">2</td>
-                                <td class="left"><%= i.Location2 %></td>
-                                </tr>
+                                 <% if (i.Location2 != "                                                  ")
+                                                     { %>
 
+                                            <tr>
+                                                <td class="center">2</td>
+                                                <td class="left"><%= i.Location2 %></td>
+                                            </tr>
+                                            <% if (i.Location3 != "                                                  ")
+                                                     { %>
 
-                                <tr>
-                                <td class="center">3</td>
-                                <td class="left"><%= i.Location3 %></td>
-                                </tr>
+                                            <tr>
+                                                <td class="center">3</td>
+                                                <td class="left"><%= i.Location3 %></td>
+                                            </tr>
+                                            <% if (i.Location4 != "                                                  ")
+                                                     { %>
 
+                                            <tr>
+                                                <td class="center">4</td>
+                                                <td class="left"><%= i.Location4 %></td>
+                                            </tr>
+                                            <% if (i.Location5 != "                                                  ")
+                                                     { %>
+                                            <tr>
+                                                <td class="center">5</td>
+                                                <td class="left"><%= i.Location5 %></td>
+                                            </tr>
+                                            <% if (i.Location6 != "                                                  ")
+                                                     { %>
 
-                                <tr>
-                                <td class="center">4</td>
-                                <td class="left"><%= i.Location4 %></td>
-                                </tr>
+                                            <tr>
+                                                <td class="center">6</td>
+                                                <td class="left"><%= i.Location6 %></td>
+                                            </tr>
+                                            <% if (i.Location7 != "                                                  ")
+                                                     { %>
 
-                                <tr>
-                                <td class="center">5</td>
-                                <td class="left"><%= i.Location5 %></td>
-                                </tr>
-
-                                <tr>
-                                <td class="center">6</td>
-                                <td class="left"><%= i.Location6 %></td>
-                                </tr>
-
-                                <tr>
-                                <td class="center">7</td>
-                                <td class="left"><%= i.Location7 %></td>
-                                </tr>
+                                            <tr>
+                                                <td class="center">7</td>
+                                                <td class="left"><%= i.Location7 %></td>
+                                            </tr>
+                                            <% }
+                                                                     }
+                                                                 }
+                                                             }
+                                                         }
+                                                     } %>
 
                                     </table>
                                                                         <h6><%= i.Remarks %> **</h6>
@@ -585,5 +642,6 @@
     </div>
 
     </form>
+    <script src="Scripts/SearchHiree.js" type="text/javascript"></script>
 
 </asp:Content>

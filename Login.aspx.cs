@@ -9,6 +9,8 @@ using System.Text;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using EADPProject.DAL;
+using System.Drawing;
 
 
 namespace EADPProject
@@ -44,149 +46,67 @@ namespace EADPProject
         }
         protected void BtnLogin_Click(object sender, EventArgs e)
         {
+            SmileDAO sdao = new SmileDAO();
             email = TBEmail.Text.ToString().Trim();
             pass = TBPass.Text.ToString().Trim();
             SHA512Managed hashing = new SHA512Managed();
-            string dbHash = getDBHash(email);
-            string dbSalt = getDBSalt(email);
+            string dbHash = sdao.getDBHash(email);
+            string dbSalt = sdao.getDBSalt(email);
 
-            try
+            if (sdao.SelectById(email) == null)
             {
-                if (dbSalt != null && dbSalt.Length > 0 && dbHash != null && dbHash.Length > 0)
-                {
-                    string pwdWithSalt = dbSalt + pass + dbSalt;
-                    byte[] hashWithSalt = hashing.ComputeHash(Encoding.UTF8.GetBytes(pwdWithSalt));
-                    string userHash = Convert.ToBase64String(hashWithSalt);
+                LblMsg.Text = "This email has not been registered.";
+                LblMsg.ForeColor = Color.Red;
+            }
 
-                    if (userHash.Equals(dbHash))
+            else if (sdao.SelectById(email).DeleteStatus == 0)
+            {
+                try
+                {
+                    if (dbSalt != null && dbSalt.Length > 0 && dbHash != null && dbHash.Length > 0)
                     {
-                        if (getusertype(email) == "Admin")
+                        string pwdWithSalt = dbSalt + pass + dbSalt;
+                        byte[] hashWithSalt = hashing.ComputeHash(Encoding.UTF8.GetBytes(pwdWithSalt));
+                        string userHash = Convert.ToBase64String(hashWithSalt);
+
+                        if (userHash.Equals(dbHash))
                         {
-                            Session["Admin"] = email;
-                            Session["type"] = getusertype(email);
-                            Response.Redirect("AdminHome.aspx", false);
+                            if (sdao.getusertype(email) == "Admin")
+                            {
+                                Session["Admin"] = email;
+                                Session["type"] = sdao.getusertype(email);
+                                Response.Redirect("AdminHome.aspx", false);
+                            }
+                            else
+                            {
+                                Session["StudNo"] = email;
+                                Session["type"] = sdao.getusertype(email);
+                                Session["username"] = sdao.getusername(email);
+                                Session["fname"] = sdao.getfname(email);
+                                Session["lname"] = sdao.getlname(email);
+                                Session["email"] = email;
+
+                                Response.Redirect("LandingPage.aspx", false);
+                            }
                         }
                         else
                         {
-                            Session["StudNo"] = email;
-                            Session["type"] = getusertype(email);
-
-                            Response.Redirect("UserHome.aspx", false);
+                            LblMsg.Text = "Invalid email/password";
+                            LblMsg.ForeColor = Color.Red;
                         }
                     }
-                    else
-                    {
-                        LblMsg.Text = "For First Time Log in please type in the given password";
-                    }
                 }
-            }
-            catch (Exception except)
-            {
-                LblMsg.Text = "Error!";
-            }
-        }
-
-        protected string getDBSalt(string email)
-        {
-            string s = null;
-            SqlConnection myConn = new SqlConnection(DBConnect);
-            string sql = "select Salt FROM SmileUser WHERE Email=@Email";
-            SqlCommand command = new SqlCommand(sql, myConn);
-            command.Parameters.AddWithValue("@Email", email);
-            try
-            {
-                myConn.Open();
-                using (SqlDataReader reader = command.ExecuteReader())
+                catch (Exception)
                 {
-                    while (reader.Read())
-                    {
-                        if (reader["Salt"] != null)
-                        {
-                            if (reader["Salt"] != DBNull.Value)
-                            {
-                                s = reader["Salt"].ToString();
-                            }
-                        }
-                    }
+                    LblMsg.Text = "Error! Please contact an Admin";
+                    LblMsg.ForeColor = Color.Red;
                 }
             }
-            catch (Exception ex)
+            else
             {
-                throw new Exception(ex.ToString());
+                LblMsg.Text = "This email has not been registered.";
+                LblMsg.ForeColor = Color.Red;
             }
-            finally { myConn.Close(); }
-            return s;
-        }//getdbsalt
-
-        protected string getDBHash(string email)
-        {
-            string h = null;
-            SqlConnection myConn = new SqlConnection(DBConnect);
-            string sql = "select PasswordHash FROM SmileUser WHERE Email=@Email";
-            SqlCommand command = new SqlCommand(sql, myConn);
-            command.Parameters.AddWithValue("@Email", email);
-            try
-            {
-                myConn.Open();
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-
-                    while (reader.Read())
-                    {
-                        if (reader["PasswordHash"] != null)
-                        {
-                            if (reader["PasswordHash"] != DBNull.Value)
-                            {
-                                h = reader["PasswordHash"].ToString();
-                            }
-                        }
-                    }
-
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
-            }
-            finally { myConn.Close(); }
-            return h;
-        }//getdbhash
-
-        protected string getusertype(string email)
-        {
-            string s = null;
-
-            SqlConnection conn = new SqlConnection(DBConnect);
-            string sql = "Select usertype from SmileUser where Email=@Email";
-            SqlCommand command = new SqlCommand(sql, conn);
-            command.Parameters.AddWithValue("@Email", email);
-            try
-            {
-                conn.Open();
-                using (SqlDataReader reader = command.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        if (reader["usertype"] != null)
-                        {
-                            if (reader["usertype"] != DBNull.Value)
-                            {
-                                s = reader["usertype"].ToString();
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.ToString());
-            }
-            finally
-            {
-                conn.Close();
-            }
-
-            return s;
         }
     }
 }

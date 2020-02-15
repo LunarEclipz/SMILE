@@ -21,7 +21,7 @@
 
             <h1>Hire History</h1>
 
-            <div class="container card text-center shadow-lg bg-white">
+            <div class="card-body card text-center shadow-lg bg-white">
                 <br>
 
                 <div class="row">
@@ -144,37 +144,53 @@
                                             </tr>
 
 
+                                             <% if (i.Location2 != "                                                  ")
+                                                     { %>
+
                                             <tr>
                                                 <td class="center">2</td>
                                                 <td class="left"><%= i.Location2 %></td>
                                             </tr>
-
+                                            <% if (i.Location3 != "                                                  ")
+                                                     { %>
 
                                             <tr>
                                                 <td class="center">3</td>
                                                 <td class="left"><%= i.Location3 %></td>
                                             </tr>
-
+                                            <% if (i.Location4 != "                                                  ")
+                                                     { %>
 
                                             <tr>
                                                 <td class="center">4</td>
                                                 <td class="left"><%= i.Location4 %></td>
                                             </tr>
-
+                                            <% if (i.Location5 != "                                                  ")
+                                                     { %>
                                             <tr>
                                                 <td class="center">5</td>
                                                 <td class="left"><%= i.Location5 %></td>
                                             </tr>
+                                            <% if (i.Location6 != "                                                  ")
+                                                     { %>
 
                                             <tr>
                                                 <td class="center">6</td>
                                                 <td class="left"><%= i.Location6 %></td>
                                             </tr>
+                                            <% if (i.Location7 != "                                                  ")
+                                                     { %>
 
                                             <tr>
                                                 <td class="center">7</td>
                                                 <td class="left"><%= i.Location7 %></td>
                                             </tr>
+                                            <% }
+                                                                     }
+                                                                 }
+                                                             }
+                                                         }
+                                                     } %>
 
 
                                         </tbody>

@@ -21,10 +21,11 @@ namespace EADPProject
         {
             if (Session["StudNo"] != null)
             {
-                //if (Session["EventLocation"] != null)
-                //{
-                //    TextBoxLocation1.Text = Session["eventLocation"].ToString();
-                //}
+                if (Session["EventLocation"] != null)
+                {
+                    TextBoxLocation1.Text = Session["eventLocation"].ToString();
+                    Session["EventLocation"] = null;
+                }
             }
             else
             {
@@ -125,11 +126,11 @@ namespace EADPProject
         {
             if (CheckBoxPreferred.Checked == true)
             {
-                TextBoxPreferred.Visible = true;
+                TextBoxPreferred.Enabled = true;
             }
             else
             {
-                TextBoxPreferred.Visible = false;
+                TextBoxPreferred.Enabled = false;
             }
         }
 

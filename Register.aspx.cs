@@ -21,6 +21,65 @@ namespace EADPProject
         {
 
         }
+
+        private bool ValidateInput()
+        {
+            bool result;
+            LblMsg.Text = String.Empty;
+
+            if (TBUsername.Text == "")
+            {
+                LblMsg.Text = "Username is required!";
+                LblMsg.ForeColor = Color.Red;
+            }
+
+
+            if (TBFName.Text == "")
+            {
+                LblMsg.Text = "First Name is required!";
+                LblMsg.ForeColor = Color.Red;
+            }
+
+
+            if (TBLName.Text == "")
+            {
+                LblMsg.Text = "Last Name is required!";
+                LblMsg.ForeColor = Color.Red;
+            }
+
+            if (TBLName.Text == "")
+            {
+                LblMsg.Text = "Last Name is required!";
+                LblMsg.ForeColor = Color.Red;
+            }
+
+            if (String.IsNullOrEmpty(TBEmail.Text))
+            {
+                LblMsg.Text = "Email is required!";
+                LblMsg.ForeColor = Color.Red;
+            }
+
+            if (TBPass.Text == "")
+            {
+                LblMsg.Text = "Please enter Password";
+                LblMsg.ForeColor = Color.Red;
+            }
+
+            if (TBCfmPass.Text != TBPass.Text)
+            {
+                LblMsg.Text = "Passwords do not match!";
+                LblMsg.ForeColor = Color.Red;
+            }
+
+            if (String.IsNullOrEmpty(LblMsg.Text))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         protected void BtnReg_Click1(object sender, EventArgs e)
         {
             Smile u = new Smile();
@@ -30,35 +89,42 @@ namespace EADPProject
             {
                 LblMsg.Text = "This email is already asscociated with an account.";
                 LblMsg.ForeColor = Color.Red;
+
             }
             else
             {
-                if (CBUser.Checked == true)
+                if (ValidateInput())
                 {
-                    usertype = "User";
-                }
-                else if (CBPhotographer.Checked == true)
-                {
-                    usertype = "Photographer";
-                }
-                else
-                {
-                    usertype = "Organisation";
-                }
+                    if (RBList.SelectedItem.Text == "User")
+                    {
+                        usertype = "User";
+                    }
+                    else if (RBList.SelectedItem.Text == "Photographer")
+                    {
+                        usertype = "Photographer";
+                    }
+                    else if (RBList.SelectedItem.Text == "Organisation")
+                    {
+                        usertype = "Organisation";
+                    }
+                    else
+                    {
+                        usertype = "Null";
+                    }
 
-                //pass into Smile obj
-                u = new Smile(usertype, TBUsername.Text, TBFName.Text, TBLName.Text, TBEmail.Text, TBPass.Text);
-                int result = u.AddSmile();
-                if (result == 1)
-                {
-                    LblMsg.Text = "You have been successfully registered!";
-                    LblMsg.ForeColor = Color.Green;
-                    Response.Redirect("Login.aspx");
-                }
-                else
-                {
-                    LblMsg.Text = "Error in adding record! Please contact an Admin!";
-                    LblMsg.ForeColor = Color.Red;
+                    //pass into Smile obj
+                    u = new Smile(usertype, TBUsername.Text, TBFName.Text, TBLName.Text, TBEmail.Text, TBPass.Text, 0);
+                    int result = u.AddSmile();
+                    if (result == 1)
+                    {
+                        LblMsg.Text = "You have been successfully registered! Please Login";
+                        LblMsg.ForeColor = Color.Green;
+                    }
+                    else
+                    {
+                        LblMsg.Text = "Error in adding record! Please contact an Admin!";
+                        LblMsg.ForeColor = Color.Red;
+                    }
                 }
             }
         }

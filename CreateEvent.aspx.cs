@@ -14,16 +14,32 @@ namespace EADPProject
     {
         GoogleLocationService locationService = new GoogleLocationService("AIzaSyCAY6l_kdezwueW1JJgqSt1IX4sqZnbZWA");
         public string name;
+        Smile sm = new Smile();
         protected void Page_Load(object sender, EventArgs e)
         {
+            foreach (var evs in getEvents())
+            {
+                Event ev = new Event();
+                ev.DeleteFinish(0);
+            }
             if (Session["StudNo"] != null)
             {
-                name = Session["StudNo"].ToString();
+                if (sm.GetSmileById(Session["StudNo"].ToString()).Usertype != "Organisation")
+                {
+                    Response.Redirect("UserViewEvent.aspx?correctuser=false");
+                }
             }
             else
             {
                 Response.Redirect("Login.aspx", false);
             }
+        }
+
+        public List<Event> getEvents()
+        {
+            Event ev = new Event();
+            List<Event> evList = ev.GetAllEvents();
+            return evList;
         }
 
         protected void ButtonCreateEvent_Click(object sender, EventArgs e)
@@ -33,18 +49,25 @@ namespace EADPProject
                 string imgFile = Path.GetFileName(SaveImage.PostedFile.FileName);
                 string address = tbEventLocation.Text.ToString();
                 var point = locationService.GetLatLongFromAddress(address);
+                string eventCapacity = tbEventCapacity.Text;
+
 
                 string latitudes = (point.Latitude).ToString();
                 string longitudes = (point.Longitude).ToString();
                 string eventCost = tbEventCost.Text.ToString();
 
-                if (eventCost == "" || eventCost.ToUpper() == "FREE")
+                if (eventCost == "" || eventCost.ToUpper() == "FREE" || int.Parse(eventCost) == 0)
                 {
                     eventCost = "free";
                 }
                 else
                 {
                     eventCost = "$" + eventCost;
+                }
+
+                if (eventCapacity == "")
+                {
+                    eventCapacity = "none";
                 }
 
                 if (SaveImage.HasFile == true)
@@ -57,7 +80,7 @@ namespace EADPProject
                 }
 
                 Event newev = new Event(tbEventName.Text, tbEventDescription.Text, eventCost, tbEventLocation.Text, tbEventDate.Text, tbStartTime.Text, tbEndTime.Text,
-                    "Images/" + imgFile, latitudes, longitudes, 0, 0, 1, 0);
+                    "Images/" + imgFile, latitudes, longitudes, 0, eventCapacity, 1, 1, ddlCategory.SelectedItem.Text, Session["StudNo"].ToString());
                 int result = newev.AddEvent();
                 if (result == 1)
                 {
@@ -83,12 +106,19 @@ namespace EADPProject
                 PanelErrorResult.Visible = true;
                 Lbl_err.Text += "Event Date is invalid!" + "<br/>";
             }
-            double wage;
-            result = double.TryParse(tbEventCost.Text, out wage);
+            double cost;
+            result = double.TryParse(tbEventCost.Text, out cost);
             if (!result && tbEventCost.Text != "" && tbEventCost.Text.ToLower() != "free")
             {
                 PanelErrorResult.Visible = true;
                 Lbl_err.Text += "Event Cost is invalid!" + "<br/>";
+            }
+            int capacity;
+            result = int.TryParse(tbEventCapacity.Text, out capacity);
+            if (!result && tbEventCapacity.Text != "" && tbEventCapacity.Text.ToLower() != "none")
+            {
+                PanelErrorResult.Visible = true;
+                Lbl_err.Text += "Event Capacity is invalid!" + "<br/>";
             }
             if (locationService.GetLatLongFromAddress(tbEventLocation.Text.ToString()) == null)
             {
@@ -102,6 +132,11 @@ namespace EADPProject
                     PanelErrorResult.Visible = true;
                     Lbl_err.Text += "Invalid Image Selected!" + "<br/>";
                 }
+            }
+            if (ddlCategory.SelectedItem.Text == "-- Select --")
+            {
+                PanelErrorResult.Visible = true;
+                Lbl_err.Text += "Please select an Event Category" + "<br/>";
             }
             if (String.IsNullOrEmpty(Lbl_err.Text))
             {

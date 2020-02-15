@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <br>
     <form id="form4" runat="server">
         <div style="padding: 10px;">
             <asp:Panel ID="PanelSuccessResult" Visible="false" runat="server" CssClass="alert alert-dismissable alert-success">
@@ -17,19 +18,19 @@
                 </button>
                 <asp:Label ID="Lbl_err" runat="server"></asp:Label>
             </asp:Panel>
-            <div class="container card shadow-lg bg-white">
+            <div class="card-body card shadow-lg bg-white">
                 <% var evs = getSingleEvent();
                     { %>
                 <div class="row" style="margin-bottom: 20px;">
                     <div class="col-md-12 mx-auto">
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-lg-6 align-items-stretch">
+                                <div class="col-lg-5 align-items-stretch">
                                     <img id="poster" src="<%=evs.PictureURL %>"
                                         alt="No image available" class="img-fluid"
                                         style="height: 300px; width: 100%" />
                                 </div>
-                                <div class="col-sm-12 col-md-12 col-lg-6">
+                                <div class="col-sm-12 col-md-12 col-lg-7">
                                     <asp:Button ID="backEvent" runat="server" Text="Back" class="btn btn-danger col-lg-2" Style="float: right;" OnClick="backEvent_Click" />
                                     <br>
                                     <div class="col-sm-12 col-md-12 col-lg-3">
@@ -51,8 +52,8 @@
                                     <br>
                                     <br>
                                     <div class="col-sm-12 col-md-12 col-lg-12">
-                                        <h6 class="" style="float:right; color:#df744a;">Joined: <% =evs.NumberOfJoins %></h6>
-                                        <input hidden="hidden" type="text" id="joinVal" name="joinVal" value="<%=evs.NumberOfJoins %>""/>
+                                        <h6 class="" style="float: right; color: #df744a;">Joined: <% =evs.NumberOfJoins %></h6>
+                                        <input hidden="hidden" type="text" id="joinVal" name="joinVal" value="<%=evs.NumberOfJoins %>" />
                                     </div>
                                 </div>
                             </div>
@@ -63,14 +64,20 @@
                                 <% int eventId = int.Parse(Request.QueryString["id"]); %>
                                 <% if (getRegisterSpecific(eventId, userInt) == null)
                                     { %>
-                                <asp:Button runat="server" class="btn btn-info col-lg-5" Text="Register for Event" ID="btnJoinEvent" OnClick="btnJoinEvent_Click" />
+                                <% if (evs.NumberOfJoins.ToString() != evs.Capacity.ToString())
+                                    {%>
+                                <button class="btn btn-success col-lg-5" type="button" id="btnJoinEvent" data-toggle="modal" data-target="#registerModal">Register for Event</button>
+                                <%}
+                                    else { %>
+                                       <button class="btn btn-success col-lg-5" type="button" disabled="disabled" data-toggle="modal" data-target="#registerModal">Event has reached maximum capacity</button>
+                                    <%} %>
                                 <% }
                                     else
                                     { %>
-                                <asp:Button runat="server" class="btn btn-danger col-lg-5" Text="Unregister from Event" ID="ButtonUnregister" OnClick="ButtonUnregister_Click" />
+                                <button class="btn btn-danger col-lg-5" type="button" id="ButtonUnregister" data-toggle="modal" data-target="#unregisterModal">Unregister from Event</button>
                                 <% } %>
 
-                                <asp:Button runat="server" class="btn btn-info col-lg-5" UseSubmitBehavior="false" Text="Hire Photographer for Event" Style="float: right;" ID="ButtonHirePhoto" OnClick="ButtonHirePhoto_Click" />
+                                <asp:Button runat="server" class="btn col-lg-5" UseSubmitBehavior="false" Text="Hire Photographer for Event" style="background-color:#df744a; color:white; float: right;" ID="ButtonHirePhoto" OnClick="ButtonHirePhoto_Click" />
                             </div>
                             <hr>
                             <br>
@@ -104,8 +111,8 @@
                                     <div class="col-sm-12 col-md-12 col-lg-1">
                                     </div>
                                     <div class="col-sm-12 col-md-12 col-lg-6">
-                                        <h5 class="" style="color: #df744a;">Event Host</h5>
-                                        <p class=""><% =evs.CreatorID.ToString() %></p>
+                                        <h5 class="" style="color: #df744a;">Event Capacity</h5>
+                                        <p class=""><% =evs.Capacity %></p>
                                     </div>
                                     <div class="col-sm-12 col-md-12 col-lg-1">
                                     </div>
@@ -129,6 +136,54 @@
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">REGISTER FOR EVENT</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you wish to join the event, <%=evs.EventName %>.
+                        <br>
+                        <br>
+                        If you wish to do so, a confirmation email
+                        
+                        
+                        will be sent to you with further instructions.
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="registerButton" runat="server" UseSubmitBehavior="false" Text="YES" class="btn btn-success" OnClick="btnJoinEvent_Click" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="unregisterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabelu">UNREGISTER FROM EVENT</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Are you sure you wish to unregister from the event, <%=evs.EventName %>.
+                        <br>
+                        <br>
+                        Some events have limited capacity.
+                    </div>
+                    <div class="modal-footer">
+                        <asp:Button ID="unregisterButton" runat="server" Text="YES" class="btn btn-danger" OnClick="ButtonUnregister_Click" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <script>
             function initMap() {
                 // Map options

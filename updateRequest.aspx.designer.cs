@@ -22,6 +22,15 @@ namespace EADPProject {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// TextBoxDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxDate;
+        
+        /// <summary>
         /// TextBoxLocation1 control.
         /// </summary>
         /// <remarks>
@@ -85,24 +94,6 @@ namespace EADPProject {
         protected global::System.Web.UI.WebControls.TextBox TextBoxLocation7;
         
         /// <summary>
-        /// TextBoxDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxDate;
-        
-        /// <summary>
-        /// TextBoxCameraModel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxCameraModel;
-        
-        /// <summary>
         /// CheckBoxSoftCopy control.
         /// </summary>
         /// <remarks>
@@ -157,6 +148,15 @@ namespace EADPProject {
         protected global::System.Web.UI.WebControls.TextBox TextBoxQuantity;
         
         /// <summary>
+        /// TextBoxRemarks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TextBoxRemarks;
+        
+        /// <summary>
         /// ButtonEdit control.
         /// </summary>
         /// <remarks>
@@ -173,14 +173,5 @@ namespace EADPProject {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label LblMsg;
-        
-        /// <summary>
-        /// TextBoxRemarks control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBoxRemarks;
     }
 }

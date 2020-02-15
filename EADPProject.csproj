@@ -63,6 +63,12 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="zxing, Version=0.16.5.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.5\lib\net45\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.5.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.5\lib\net45\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -70,53 +76,119 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AddAdmin.aspx" />
+    <Content Include="AdminHome.aspx" />
     <Content Include="App_Data\MyDB.mdf" />
     <Content Include="App_Data\MyDB_log.ldf">
       <DependentUpon>MyDB.mdf</DependentUpon>
     </Content>
+    <Content Include="Btest.aspx" />
     <Content Include="CreateEvent.aspx" />
     <Content Include="createRequest.aspx" />
     <Content Include="EditEvent.aspx" />
+    <Content Include="EventAttendance.aspx" />
     <Content Include="EventInfo.aspx" />
     <Content Include="Global.asax" />
     <Content Include="GoogleMaps.LocationServices.readme.txt" />
     <Content Include="hireeList.aspx" />
-    <Content Include="Images\default.jpeg" />
-    <Content Include="Images\download.jpg" />
-    <Content Include="Images\images %281%29.jpg" />
-    <Content Include="Images\images %282%29.jpg" />
-    <Content Include="Images\images %283%29.jpg" />
-    <Content Include="Images\images.jpg" />
-    <Content Include="Images\yellowMovie.png" />
+    <Content Include="Home.aspx" />
+    <Content Include="LandingPage.aspx" />
     <Content Include="Login.aspx" />
+    <Content Include="Login_css\animate.js" />
+    <Content Include="Login_css\AnimOnScroll.js" />
+    <Content Include="Login_css\bootstrap-theme.css" />
+    <Content Include="Login_css\bootstrap.css" />
+    <Content Include="Login_css\bootstrap.js" />
+    <Content Include="Login_css\classie.js" />
+    <Content Include="Login_css\custom.js" />
+    <Content Include="Login_css\default.css" />
+    <Content Include="Login_css\imagesloaded.js" />
+    <Content Include="Login_css\jquery-1.9.1.min.js" />
+    <Content Include="Login_css\jquery.easing.js" />
+    <Content Include="Login_css\jquery.fancybox-media.js" />
+    <Content Include="Login_css\jquery.fancybox.css" />
+    <Content Include="Login_css\jquery.fancybox.pack.js" />
+    <Content Include="Login_css\jquery.min.js" />
+    <Content Include="Login_css\jquery.nav.js" />
+    <Content Include="Login_css\jquery.nicescroll.min.js" />
+    <Content Include="Login_css\jquery.scrollTo.js" />
+    <Content Include="Login_css\landing_style.css" />
+    <Content Include="Login_css\masonry.pkgd.min.js" />
+    <Content Include="Login_css\modernizr.custom.js" />
+    <Content Include="Login_css\nagging-menu.js" />
+    <Content Include="Login_css\slippry.css" />
+    <Content Include="Login_css\slippry.min.js" />
+    <Content Include="Login_css\style.css" />
+    <Content Include="Logout.aspx" />
+    <Content Include="Profile.aspx" />
     <Content Include="Scripts\Eventlocationhref.js" />
     <Content Include="Scripts\HistoryReplaceD.js" />
     <Content Include="Scripts\HireeReplaceD.js" />
     <Content Include="Scripts\HistoryReplaceU.js" />
     <Content Include="Scripts\HireeReplaceU.js" />
     <Content Include="Scripts\Locationhref.js" />
+    <Content Include="Scripts\login_main.js" />
     <Content Include="Scripts\navbar.js" />
+    <Content Include="Scripts\SearchHiree.js" />
     <Content Include="Scripts\Search.js" />
     <Content Include="Smile_Shop.aspx" />
+    <Content Include="Smile_Shop_AdminAdd.aspx" />
+    <Content Include="Smile_Shop_AdminCatalog.aspx" />
+    <Content Include="Smile_Shop_AdminUpdate.aspx" />
     <Content Include="Smile_Shop_Cart.aspx" />
     <Content Include="Smile_Shop_Catalog.aspx" />
+    <Content Include="StyleSheets\all.css" />
+    <Content Include="StyleSheets\animate.css" />
     <Content Include="StyleSheets\common.css" />
     <Content Include="StyleSheets\navbar.css" />
+    <Content Include="StyleSheets\nice-select.css" />
+    <Content Include="StyleSheets\slick.css" />
+    <Content Include="StyleSheets\style.css" />
+    <Content Include="StyleSheets\wizard.css" />
+    <Content Include="UpdateProfile.aspx" />
     <Content Include="updateRequest.aspx" />
-    <Content Include="UserHome.aspx" />
     <Content Include="UserViewEvent.aspx" />
     <Content Include="ViewEvent.aspx" />
     <Content Include="viewRequestHistory.aspx" />
+    <Content Include="ViewUserList.aspx" />
     <Content Include="Web.config" />
     <Content Include="Register.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddAdmin.aspx.cs">
+      <DependentUpon>AddAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AddAdmin.aspx.designer.cs">
+      <DependentUpon>AddAdmin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminHome.aspx.cs">
+      <DependentUpon>AdminHome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminHome.aspx.designer.cs">
+      <DependentUpon>AdminHome.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdminMaster.Master.cs">
+      <DependentUpon>AdminMaster.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdminMaster.Master.designer.cs">
+      <DependentUpon>AdminMaster.Master</DependentUpon>
+    </Compile>
     <Compile Include="BLL\Cart.cs" />
     <Compile Include="BLL\Event.cs" />
     <Compile Include="BLL\EventRegister.cs" />
     <Compile Include="BLL\Product.cs" />
     <Compile Include="BLL\Receipts.cs" />
     <Compile Include="BLL\Smile.cs" />
+    <Compile Include="Btest.aspx.cs">
+      <DependentUpon>Btest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Btest.aspx.designer.cs">
+      <DependentUpon>Btest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CreateEvent.aspx.cs">
       <DependentUpon>CreateEvent.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -144,6 +216,13 @@
     <Compile Include="EditEvent.aspx.designer.cs">
       <DependentUpon>EditEvent.aspx</DependentUpon>
     </Compile>
+    <Compile Include="EventAttendance.aspx.cs">
+      <DependentUpon>EventAttendance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EventAttendance.aspx.designer.cs">
+      <DependentUpon>EventAttendance.aspx</DependentUpon>
+    </Compile>
     <Compile Include="EventInfo.aspx.cs">
       <DependentUpon>EventInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -161,12 +240,40 @@
     <Compile Include="hireeList.aspx.designer.cs">
       <DependentUpon>hireeList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Home.aspx.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Home.aspx.designer.cs">
+      <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LandingPage.aspx.cs">
+      <DependentUpon>LandingPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LandingPage.aspx.designer.cs">
+      <DependentUpon>LandingPage.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Logout.aspx.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Logout.aspx.designer.cs">
+      <DependentUpon>Logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SmileMaster.Master.cs">
@@ -190,6 +297,27 @@
     <Compile Include="Smile_Shop.Master.designer.cs">
       <DependentUpon>Smile_Shop.Master</DependentUpon>
     </Compile>
+    <Compile Include="Smile_Shop_AdminAdd.aspx.cs">
+      <DependentUpon>Smile_Shop_AdminAdd.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Smile_Shop_AdminAdd.aspx.designer.cs">
+      <DependentUpon>Smile_Shop_AdminAdd.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Smile_Shop_AdminCatalog.aspx.cs">
+      <DependentUpon>Smile_Shop_AdminCatalog.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Smile_Shop_AdminCatalog.aspx.designer.cs">
+      <DependentUpon>Smile_Shop_AdminCatalog.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Smile_Shop_AdminUpdate.aspx.cs">
+      <DependentUpon>Smile_Shop_AdminUpdate.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Smile_Shop_AdminUpdate.aspx.designer.cs">
+      <DependentUpon>Smile_Shop_AdminUpdate.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Smile_Shop_Cart.aspx.cs">
       <DependentUpon>Smile_Shop_Cart.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -204,19 +332,19 @@
     <Compile Include="Smile_Shop_Catalog.aspx.designer.cs">
       <DependentUpon>Smile_Shop_Catalog.aspx</DependentUpon>
     </Compile>
+    <Compile Include="UpdateProfile.aspx.cs">
+      <DependentUpon>UpdateProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdateProfile.aspx.designer.cs">
+      <DependentUpon>UpdateProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="updateRequest.aspx.cs">
       <DependentUpon>updateRequest.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="updateRequest.aspx.designer.cs">
       <DependentUpon>updateRequest.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="UserHome.aspx.cs">
-      <DependentUpon>UserHome.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="UserHome.aspx.designer.cs">
-      <DependentUpon>UserHome.aspx</DependentUpon>
     </Compile>
     <Compile Include="UserViewEvent.aspx.cs">
       <DependentUpon>UserViewEvent.aspx</DependentUpon>
@@ -246,8 +374,16 @@
     <Compile Include="Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ViewUserList.aspx.cs">
+      <DependentUpon>ViewUserList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ViewUserList.aspx.designer.cs">
+      <DependentUpon>ViewUserList.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AdminMaster.Master" />
     <None Include="packages.config" />
     <Content Include="SmileMaster.Master" />
     <Content Include="Smile_Shop.Master" />
@@ -259,7 +395,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Images\" />
     <Folder Include="Models\" />
+    <Folder Include="ShopImages\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
